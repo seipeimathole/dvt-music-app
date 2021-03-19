@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  proxyUrl: ""
+  proxyUrl: "",
+  apiUrl: "https://api.deezer.com"
 };

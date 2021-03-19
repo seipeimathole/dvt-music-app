@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchArtist } from 'src/app/interfaces/deezer.interfaces';
 import { DeezerAPIService } from 'src/app/services/deezer-api/deezer-api.service';
 
 @Component({
@@ -7,13 +8,15 @@ import { DeezerAPIService } from 'src/app/services/deezer-api/deezer-api.service
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  searchResults: any = [];
+  searchResults: SearchArtist[] = [];
 
   constructor(private deezerApi: DeezerAPIService) { }
 
   ngOnInit(): void {
     this.deezerApi.searchArtists()
-      .subscribe((r) => console.log(r), (error) => console.error(error));
+      .subscribe(
+        (searchResult) => this.searchResults = searchResult,
+        (error) => console.error(error));
   }
 
   onSearchArtist() { }

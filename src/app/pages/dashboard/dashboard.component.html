@@ -35,7 +35,7 @@
   <div class="row">
     <div class="col-md-3 mb-4" *ngFor="let result of searchResults">
       <div class="card" style="width: 18rem">
-        <img src="assets/images/The_Eminem_Show.jpg" class="card-img-top" />
+        <img [src]="result.artist.picture" class="card-img-top" />
         <div class="card-body">
           <h5 class="card-title">{{ result.album.title }}</h5>
           <p class="card-text">{{ result.title_short }}</p>

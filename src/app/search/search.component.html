@@ -1,0 +1,25 @@
+
+<!-- <div *ngIf="isError && !showSpinner" class="alert alert-danger" role="alert">
+    {{'Invalid search'}}
+</div> -->
+
+<div *ngIf="showSpinner" class="col-md-8 d-flex justify-content-center mt-4">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
+
+<section *ngIf="!showSpinner" class="container mt-4">
+  <div class="row">
+    <div class="col-md-3 mb-4 me-4" *ngFor="let result of searchResults">
+      <a class="link" routerLink="/details" routerLinkActive="active" (click)="onSetArtistData(result)">
+      <div class="card">
+
+        <div class="card-body">
+          <p><img src={{result.picture}} class="card-img-top"></p>
+          <h5 class="card-title">{{result.name}}</h5>
+          <p class="card-text">{{result.nb_fan}} {{'fans'}} </p>
+        </div>
+      </div>
+      </a>
+    </div>
+  </div>
+</section>

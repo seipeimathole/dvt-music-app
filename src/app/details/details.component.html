@@ -1,0 +1,43 @@
+<div *ngIf="showSpinner" class="col-md-8 d-flex justify-content-center mt-4">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
+
+<div class="container">
+ <div  *ngIf="!showSpinner" class="row mt-4">
+    <div class="col-md-6 mb-4">
+      <div class="row">
+          <div class="card">
+            <div class="card-body d-flex justify-content-between">
+              <div><h5 class="card-title">{{artistName}} </h5>
+                  <p class="card-text">{{fans}} {{'fans'}} </p>
+              </div>
+              <div><img src={{this.artistPicture}} class="card-img-top"></div>
+            </div>
+
+          </div>
+      </div>
+      </div>
+      <div  class="col-md-6 mb-4">
+        <ol class="list-group">
+          <li class="list-group-item active" aria-current="true">
+           {{'Top Tracks'}}
+          </li>
+          <li *ngFor="let track of trackList"  class="list-group-item d-flex justify-content-between">
+            <span>{{track.title}}</span>  <span>{{this.convertTrackTime(track.duration)}}</span>
+          </li>
+        </ol>
+      </div>
+
+    <div  *ngIf="!showSpinner" class="row">
+      <h5 class="mb-4">{{'Albums'}}</h5>
+      <div class="col-md-3 mb-4 me-4" *ngFor="let item of albumList">
+        <div class="card">
+          <img src={{this.artistPicture}} class="card-img-top">
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{item.album.title}}</p>
+          <p class="card-text">{{item.rank}}</p>
+        </div>
+      </div>
+    </div>
+</div>

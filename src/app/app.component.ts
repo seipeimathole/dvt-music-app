@@ -1,30 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from './app.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent  {
+
   title = 'music-app';
-  artistName: any;
-  albumCover: any;
-  numberOfFans: any;
+
+  searchValue ='';
+  isError = false;
+  errorMessage = '';
   searchResults: any;
+  showResults = false;
+  showSpinner = false;
 
+  constructor(private appService: AppService,
+              private route: Router,
+              private router: ActivatedRoute,) {}
 
-  constructor(private appService: AppService) {}
-
-   ngOnInit() {
-
+  ngOnInit() {
    }
 
-   onSearchArtist() { // search for artist - test version on json mockup file
-    this.appService.getArtists().subscribe(
-      (response: any) =>  {
-        console.log('results', response.data);
-        this.searchResults = response.data;
-      }
-    )}
+  searchText(event: any) {
+    this.appService.searchValue = event.target.value;
+  }
+
+
+  onSearchArtist() {
+    this.route.navigateByUrl('/search');
+  }
 }
+

@@ -7,24 +7,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="txtSearch">
-        <button class="btn btn-outline-success" type="button" (click)="onSearchArtist()">Search</button>
+        <input class="form-control me-2" (input)="searchText($event)" placeholder="Search" aria-label="txtSearch" required>
+        <button class="btn btn-primary text-white" type="button" (click)="onSearchArtist()">Search</button>
       </form>
     </div>
   </div>
 </nav>
-<section class="container mt-4" >
-  <div class="row">
-    <div class="col-md-3 mb-4" *ngFor="let result of searchResults">
-      <div class="card" style="width: 18rem;">
-        <img src="assets/images/The_Eminem_Show.jpg" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">{{result.album.title}}</h5>
-          <p class="card-text"> {{result.title_short}}</p>
-          <a href="#" class="btn btn-primary">preview</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-</section>
+<div *ngIf="showSpinner" class="col-md-8 d-flex justify-content-center mt-4">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
+
+<router-outlet></router-outlet>
